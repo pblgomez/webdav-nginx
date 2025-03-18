@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - main
+      - ci/fixSemver
 
 permissions:
   packages: write
@@ -30,7 +31,7 @@ jobs:
 
       - name: Bump version and create tag
         id: bump
-        uses: anothrNick/github-tag-action@v1.36.0
+        uses: anothrNick/github-tag-action@v1
         with:
           default_bump: patch
         env:
