@@ -28,6 +28,14 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GHCR_TOKEN }}
 
+      - name: Bump version and create tag
+        id: bump
+        uses: anothrNick/github-tag-action@v1.36.0
+        with:
+          default_bump: patch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Extract metadata (tags, labels)
         id: meta
         uses: docker/metadata-action@v5
@@ -36,6 +44,8 @@ jobs:
           tags: |
             type=raw,value=${{ steps.bump.outputs.new_tag }}
             type=raw,value=latest
+          labels: |
+            org.opencontainers.image.source=https://github.com/${{ github.repository }}
 
       - name: Build and push multi-arch image
         uses: docker/build-push-action@v5
