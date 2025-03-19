@@ -33,8 +33,6 @@ jobs:
       - name: Bump version and create tag
         id: bump
         uses: anothrNick/github-tag-action@v1
-        with:
-          default_bump: patch
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

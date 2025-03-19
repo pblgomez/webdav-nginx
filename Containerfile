@@ -9,5 +9,7 @@ RUN set -eux; \
     mkdir /var/www/dav; \
     chmod -R a+rwX /var/www
 
+LABEL org.opencontainers.image.source=https://github.com/pblgomez/webdav-nginx
+
 # docker entrypoint
  COPY auth.sh /custom-cont-init.d/
